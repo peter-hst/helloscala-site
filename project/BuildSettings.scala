@@ -28,10 +28,12 @@ object BuildSettings {
       "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/",
       "Typesafe Snapshots" at "http://repo.typesafe.com/typesafe/snapshots/"),
     libraryDependencies ++= (
-      __compile(_scalaModules) ++
+      __provided(_scalaModules) ++
         __compile(_slf4j) ++
         __compile(_logback) ++
-        __compile(_scala) ++
+        __provided(_scala) ++
+        __provided(_scalaLogging) ++
+        __provided(_typesafeConfig) ++
         __test(_scalatest)),
     offline := true
   )

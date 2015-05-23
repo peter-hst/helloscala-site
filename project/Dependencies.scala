@@ -33,32 +33,41 @@ object Dependencies {
     "org.scala-lang" % "scala-reflect" % verScala
   )
 
-  private val verAkka = "2.3.9"
+  private val verAkka = "2.3.11"
   val _akkaActor = "com.typesafe.akka" %% "akka-actor" % verAkka
   val _akkaRemote = "com.typesafe.akka" %% "akka-remote" % verAkka
   val _akkaSlf4j = "com.typesafe.akka" %% "akka-slf4j" % verAkka
   val _akkaTestkit = Seq(
     "com.typesafe.akka" %% "akka-testkit" % verAkka)
 
-  val verAkkaStream = "1.0-M4"
+  val verAkkaStream = "1.0-RC3"
   val _akkaStream = "com.typesafe.akka" % "akka-stream-experimental_2.11" % verAkkaStream
 
-  val verAakkaHttp = "1.0-M4"
+  val verAakkaHttp = "1.0-RC3"
   val _akkaHttp = Seq(
     "com.typesafe.akka" %% "akka-http-experimental" % verAakkaHttp,
     "com.typesafe.akka" %% "akka-http-core-experimental" % verAakkaHttp
   )
 
-  val slickVersion = "2.1.0"
+  val slickVersion = "3.0.0"
   val _slick = "com.typesafe.slick" %% "slick" % slickVersion
   val _slickExtensions = "com.typesafe.slick" %% "slick-extensions" % slickVersion
 
-  val verSlickPg = "0.6.5.3"
+  val verSlickPg = "0.9.0"
   val _slickPg = Seq(
-    "com.github.tminglei" %% "slick-pg_joda-time" % verSlickPg,
-    ("com.github.tminglei" %% "slick-pg_play-json" % verSlickPg).exclude("com.typesafe.play", "play-json"),
-    "com.github.tminglei" %% "slick-pg" % verSlickPg
+    ("com.github.tminglei" %% "slick-pg" % verSlickPg).exclude("com.typesafe.slick", "slick")
   )
+
+  val verPlay = "2.4.0-RC5"
+  val _playJson = "com.typesafe.play" %% "play-json" % verPlay
+  val _play = ("com.typesafe.play" %% "play" % verPlay).
+    exclude("com.typesafe.akka", "akka-actor").
+    exclude("com.typesafe.akka", "akka-slf4j").
+    exclude("org.scala-lang", "scala-library").
+    exclude("org.scala-lang", "scala-compiler").
+    exclude("org.scala-lang", "scala-reflect").
+    exclude("org.scala-lang.modules", "scala-xml").
+    exclude("org.scala-lang.modules", "scala-parser-combinators")
 
   val _htmlUnit = "net.sourceforge.htmlunit" % "htmlunit" % "2.15"
 
@@ -66,35 +75,33 @@ object Dependencies {
     "org.scalatest" %% "scalatest" % "2.2.4"
   )
 
+  val _scalatestPlay = ("org.scalatestplus" %% "play" % "1.4.0-M2").
+    exclude("com.typesafe.play", "play-test").
+    exclude("com.typesafe.play", "play-ws").
+    exclude("org.seleniumhq.selenium", "selenium-java").
+    exclude("org.scala-lang", "scala-library").
+    exclude("org.scalatest", "scalatest")
+
   val verSelenium = "2.45.0"
   val _selenium = "org.seleniumhq.selenium" % "selenium-java" % verSelenium
 
-  val verJetty = "9.2.10.v20150310"
-  val _jetty = Seq(
-    "org.eclipse.jetty" % "jetty-webapp" % verJetty
-  )
-
-  val verJson4s = "3.2.11"
-  val _json4s = Seq(
-    "org.json4s" %% "json4s-mongo" % verJson4s,
-    "org.json4s" %% "json4s-ext" % verJson4s,
-    "org.json4s" %% "json4s-jackson" % verJson4s)
-
-  //val _bson = "org.mongodb" % "bson" % "3.0.0-rc0"
+  val _bson = "org.mongodb" % "bson" % "3.0.0"
 
   val _casbah = "org.mongodb" %% "casbah" % "2.8.0"
 
-  val _typesafeConfig = "com.typesafe" % "config" % "1.2.1"
+  val _typesafeConfig = "com.typesafe" % "config" % "1.3.0"
 
   val _scalaLogging = ("com.typesafe.scala-logging" %% "scala-logging" % "3.1.0").exclude("org.scala-lang", "scala-library").exclude("org.scala-lang", "scala-reflect")
 
   val _netty = "io.netty" % "netty" % "4.0.26.Final"
 
-  val _slf4j = "org.slf4j" % "slf4j-api" % "1.7.10"
+  val _slf4j = "org.slf4j" % "slf4j-api" % "1.7.12"
 
-  val _logback = "ch.qos.logback" % "logback-classic" % "1.1.2"
+  val _slf4jNop = "org.slf4j" % "slf4j-nop" % "1.7.12"
 
-  val _bouncycastle = "org.bouncycastle" % "bcprov-ext-jdk15on" % "1.50"
+  val _logback = "ch.qos.logback" % "logback-classic" % "1.1.3"
+
+  val _bouncycastle = "org.bouncycastle" % "bcprov-jdk15on" % "1.52"
 
   val _javaxActivation = "javax.activation" % "activation" % "1.1.1"
 
@@ -108,7 +115,13 @@ object Dependencies {
 
   val _commonsNet = "commons-net" % "commons-net" % "3.3"
 
+  val _commonsLang3 = "org.apache.commons" % "commons-lang3" % "3.3.2"
+
+  val _commonCodecs = "commons-codec" % "commons-codec" % "1.10"
+
   val _h2 = "com.h2database" % "h2" % "1.4.186"
+
+  val _mysql = "mysql" % "mysql-connector-java" % "5.1.35"
 
   val _postgresql = "org.postgresql" % "postgresql" % "9.4-1201-jdbc41"
 
@@ -119,5 +132,11 @@ object Dependencies {
   val verUndertow = "1.1.3.Final"
   val _undertowCore = "io.undertow" % "undertow-core" % verUndertow
 
-  val _jodatime = "joda-time" % "joda-time" % "2.7"
+  val _jodatime = Seq("joda-time" % "joda-time" % "2.7", "java" % "joda-convert" % "1.7")
+
+  val _hikariCP = "com.zaxxer" % "HikariCP" % "2.3.5"
+
+  val _patchca = "com.github.bingoohuang" % "patchca" % "0.0.1"
+
+  val _junit =  "junit" % "junit" % "4.12"
 }
