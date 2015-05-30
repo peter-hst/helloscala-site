@@ -51,7 +51,8 @@ object Build extends Build {
           __compile(_patchca) ++
           __compile(_akkaHttp) ++
           __compile(_akkaStream) ++
-          __compile(_akkaActor)))
+          __compile(_akkaActor) ++
+          __compile(_akkaSlf4j)))
 
   lazy val hsCommon = Project("hs-common", file("hs-common"))
     .settings(basicSettings: _*)

@@ -46,7 +46,8 @@ object Dependencies {
   val verAakkaHttp = "1.0-RC3"
   val _akkaHttp = Seq(
     "com.typesafe.akka" %% "akka-http-experimental" % verAakkaHttp,
-    "com.typesafe.akka" %% "akka-http-core-experimental" % verAakkaHttp
+    "com.typesafe.akka" %% "akka-http-core-experimental" % verAakkaHttp,
+    "com.typesafe.akka" %% "akka-http-xml-experimental" % verAakkaHttp
   )
 
   val slickVersion = "3.0.0"
