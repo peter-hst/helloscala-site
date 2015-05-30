@@ -14,7 +14,7 @@ case class User(id: Long,
                 avatarUrl: Option[String],
                 interest: Option[String],
                 occupation: Option[String],
-                createdAt: LocalDateTime = LocalDateTime.now())
+                updatedAt: LocalDateTime)
 
 private[data] class TableUser(tag: Tag) extends Table[User](tag, "user") {
   val id = column[Long]("id", O.PrimaryKey)
@@ -23,11 +23,11 @@ private[data] class TableUser(tag: Tag) extends Table[User](tag, "user") {
   val nick = column[Option[String]]("nick")
   val gender = column[Option[GenderType.Value]]("gender")
   val birthday = column[Option[LocalDate]]("birthday")
-  val avatarUrl = column[Option[String]]("avatar_url")
+  val avatarUrl = column[Option[String]]("avatarUrl")
   val interest = column[Option[String]]("interest")
   val occupation = column[Option[String]]("occupation")
-  val createdAt = column[LocalDateTime]("created_at")
+  val updatedAt = column[LocalDateTime]("updatedAt")
 
-  def * = (id, email, name, nick, gender, birthday, avatarUrl, interest, occupation, createdAt
+  def * = (id, email, name, nick, gender, birthday, avatarUrl, interest, occupation, updatedAt
     ) <>(User.tupled, User.unapply)
 }

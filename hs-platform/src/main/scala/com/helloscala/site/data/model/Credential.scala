@@ -10,6 +10,7 @@ case class Credential(id: Option[Long],
                       salt: String,
                       password: String,
                       ownerType: OwnerType.Value,
+                      roleIds: List[String],
                       createdAt: LocalDateTime)
 
 class TableCredential(tag: Tag) extends Table[Credential](tag, "credential") {
@@ -17,11 +18,12 @@ class TableCredential(tag: Tag) extends Table[Credential](tag, "credential") {
   val email = column[Option[String]]("email")
   val salt = column[String]("salt")
   val password = column[String]("password")
-  val ownerType = column[OwnerType.Value]("owner_type")
-  val createdAt = column[LocalDateTime]("created_at")
+  val ownerType = column[OwnerType.Value]("ownerType")
+  val roleIds = column[List[String]]("roleIds")
+  val createdAt = column[LocalDateTime]("createdAt")
 
   def __idxEmail = index(tableName + "_idx_email", email, true)
 
-  def * = (id, email, salt, password, ownerType, createdAt) <>(Credential.tupled, Credential.unapply)
+  def * = (id, email, salt, password, ownerType, roleIds, createdAt) <>(Credential.tupled, Credential.unapply)
 }
 

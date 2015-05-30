@@ -5,14 +5,14 @@ import com.helloscala.site.data.driver.MyDriver.api._
 private[data] object Schemas {
   val db = Database.forConfig("helloscala.db")
 
-  def tCredential = TableQuery[TableCredential]
+  def tRole = TableQuery[TableRole]
 
-  def tAdmin = TableQuery[TableAdmin]
+  def tCredential = TableQuery[TableCredential]
 
   def tUser = TableQuery[TableUser]
 
   def schemas =
-    tCredential.schema ++
-      tAdmin.schema ++
+    tRole.schema ++
+      tCredential.schema ++
       tUser.schema
 }

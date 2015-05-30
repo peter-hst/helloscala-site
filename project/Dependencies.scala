@@ -58,7 +58,7 @@ object Dependencies {
     ("com.github.tminglei" %% "slick-pg" % verSlickPg).exclude("com.typesafe.slick", "slick")
   )
 
-  val verPlay = "2.4.0-RC5"
+  val verPlay = "2.4.0"
   val _playJson = "com.typesafe.play" %% "play-json" % verPlay
   val _play = ("com.typesafe.play" %% "play" % verPlay).
     exclude("com.typesafe.akka", "akka-actor").

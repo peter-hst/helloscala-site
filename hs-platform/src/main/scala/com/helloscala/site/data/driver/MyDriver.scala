@@ -2,7 +2,7 @@ package com.helloscala.site.data.driver
 
 import com.github.tminglei.slickpg._
 import com.helloscala.common.HsConstant
-import com.helloscala.common.types.{GenderType, MsgStatus, OwnerType}
+import com.helloscala.common.types.{Authorities, GenderType, MsgStatus, OwnerType}
 import play.api.libs.json.{JsValue, Json}
 import slick.driver.JdbcDriver
 
@@ -11,6 +11,7 @@ trait MyColumnTypes {
 
   trait MyColumnsAPI {
     self: API =>
+    implicit val __authoritiesColumnType = MappedColumnType.base[Authorities.Value, String]({ o => o.toString }, { s => Authorities.withName(s) })
     implicit val __ownerTypeColumnType = MappedColumnType.base[OwnerType.Value, String]({ o => o.toString }, { s => OwnerType.withName(s) })
     implicit val __genderTypeColumnType = MappedColumnType.base[GenderType.Value, String]({ o => o.toString }, { s => GenderType.withName(s) })
     implicit val __remindStatusColumnType = MappedColumnType.base[MsgStatus.Value, String]({ o => o.toString }, { s => MsgStatus.withName(s) })
@@ -34,14 +35,14 @@ private[data] trait MyDriver
   //////
   object MyAPI
     extends API
+    with MyColumnsAPI
     with DateTimeImplicits
     with HStoreImplicits
     with JsonImplicits
-    with ArrayImplicits
     //  with RangeImplicits
     //  with SearchImplicits
     //  with PostGISImplicits
-    with MyColumnsAPI {
+    with ArrayImplicits {
     implicit val strListTypeMapper = new SimpleArrayJdbcType[String]("text").to(_.toList)
     implicit val json4sJsonArrayTypeMapper =
       new AdvancedArrayJdbcType[JsValue](pgjson,

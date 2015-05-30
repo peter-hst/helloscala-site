@@ -16,7 +16,7 @@ object Build extends Build {
   ///////////////////////////////////////////////////////////////
   // helloscala project
   ///////////////////////////////////////////////////////////////
-  lazy val helloscala = Project("helloscala", file("."))
+  lazy val helloscala = Project("helloscala-site", file("."))
     .enablePlugins(PlayScala)
     .aggregate(hsPlatform, hsCommon)
     .dependsOn(hsPlatform, hsCommon)

@@ -32,7 +32,7 @@ class UserRepo()(implicit ec: ExecutionContext) {
     val now = LocalDateTime.now()
     val salt = new String(PasswordUtil.salt(HsConstant.SALT_SIZE))
     val password = PasswordUtil.hash(salt + payload.password)
-    val credential = Credential(None, Some(payload.account), salt, password, OwnerType.USER, now)
+    val credential = Credential(None, Some(payload.account), salt, password, OwnerType.USER, List("admin"), now)
 
     val action = (for {
       ownerId <- (tCredential returning tCredential.map(_.id)) += credential
